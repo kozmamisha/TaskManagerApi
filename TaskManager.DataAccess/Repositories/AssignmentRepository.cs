@@ -30,5 +30,24 @@ namespace TaskManager.DataAccess.Repositories
                 .OrderBy(a => a.Id)
                 .ToListAsync();
         }
+
+        public async Task<Assignment?> GetAssignmentById(Guid id)
+        {
+            return await _dbContext.Assignments
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task UpdateAssignment(Assignment assignment)
+        {
+            _dbContext.Assignments.Update(assignment);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task DeleteAssignment(Assignment assignment)
+        {
+            _dbContext.Assignments.Remove(assignment);
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }
