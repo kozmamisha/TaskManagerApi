@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using TaskManager.BusinessLogic.Extensions;
 using TaskManager.DataAccess.Extensions;
 
@@ -8,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
+
 
 builder.Services.AddDataAccess(builder.Configuration);
 builder.Services.AddBusinessLogic();

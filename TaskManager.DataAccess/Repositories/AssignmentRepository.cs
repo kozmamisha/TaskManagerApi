@@ -16,9 +16,11 @@ namespace TaskManager.DataAccess.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task CreateAssignment(Assignment assignment)
+        public async Task CreateAssignment(Guid groupId, Assignment assignment)
         {
             assignment.CreatedAt = DateTime.UtcNow;
+            assignment.GroupId = groupId;
+
             await _dbContext.Assignments.AddAsync(assignment);
             await _dbContext.SaveChangesAsync();
         }

@@ -9,23 +9,20 @@ using TaskManager.DataAccess.Entities;
 
 namespace TaskManager.DataAccess.Configurations
 {
-    public class AssignmentConfiguration : IEntityTypeConfiguration<Assignment>
+    public class GroupConfiguration : IEntityTypeConfiguration<Group>
     {
-        public void Configure(EntityTypeBuilder<Assignment> builder)
+        public void Configure(EntityTypeBuilder<Group> builder)
         {
             builder.HasKey(x => x.Id);
 
-            builder
-                .HasOne(a => a.Group)
-                .WithMany(g => g.Tasks)
-                .HasForeignKey(a => a.GroupId);
+            builder.Property(a => a.Name)
+               .IsRequired()
+               .HasMaxLength(50);
 
-            builder.Property(a => a.Title)
-                .IsRequired()
-                .HasMaxLength(70);
-            
-            builder.Property(a => a.Description)
-                .HasMaxLength(200);
+            builder
+                .HasMany(g => g.Tasks)
+                .WithOne(a => a.Group)
+                .HasForeignKey(a => a.GroupId);
         }
     }
 }

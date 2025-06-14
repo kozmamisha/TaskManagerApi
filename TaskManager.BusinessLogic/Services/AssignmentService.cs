@@ -11,7 +11,7 @@ namespace TaskManager.BusinessLogic.Services
 {
     public class AssignmentService(IAssignmentRepository assignmentRepository) : IAssignmentService
     {
-        public async Task CreateAsync(string title, string description)
+        public async Task CreateAsync(string title, string description, Guid groupId)
         {
             if (string.IsNullOrWhiteSpace(title))
             {
@@ -29,7 +29,7 @@ namespace TaskManager.BusinessLogic.Services
                 Description = description
             };
 
-            await assignmentRepository.CreateAssignment(assignment);
+            await assignmentRepository.CreateAssignment(groupId, assignment);
         }
 
         public async Task<List<Assignment>> GetAllAsync()

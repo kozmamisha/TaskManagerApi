@@ -1,46 +1,45 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TaskManager.BusinessLogic.DTO;
 using TaskManager.BusinessLogic.Services;
-using TaskManager.DataAccess.Entities;
 
 namespace TaskManagerApi.Controllers
 {
     [ApiController]
-    [Route("task")]
-    public class AssignmentController(IAssignmentService assignmentService) : ControllerBase
+    [Route("group")]
+    public class GroupController(IGroupService groupService) : ControllerBase
     {
         [HttpPost("create")]
-        public async Task<ActionResult> Create(string title, string description, Guid groupId)
+        public async Task<ActionResult> Create(string name)
         {
-            await assignmentService.CreateAsync(title, description, groupId);
+            await groupService.CreateAsync(name);
             return Created();
         }
 
-        [HttpGet("tasks")]
+        [HttpGet("groups")]
         public async Task<ActionResult> GetAll()
         {
-            var result = await assignmentService.GetAllAsync();
+            var result = await groupService.GetAllAsync();
             return Ok(result);
         }
 
         [HttpGet("{id:guid}")]
         public async Task<ActionResult> GetOne([FromRoute] Guid id)
         {
-            var result = await assignmentService.GetByIdAsync(id);
+            var result = await groupService.GetByIdAsync(id);
             return Ok(result);
         }
-        
+
         [HttpPut("{id:guid}")]
-        public async Task<ActionResult> Update([FromRoute] Guid id, [FromBody] UpdateAssignmentDto dto)
+        public async Task<ActionResult> Update([FromRoute] Guid id, [FromBody] UpdateGroupDto dto)
         {
-            await assignmentService.UpdateAsync(id, dto);
+            await groupService.UpdateAsync(id, dto);
             return NoContent();
         }
-        
+
         [HttpDelete("{id:guid}")]
         public async Task<ActionResult> Delete([FromRoute] Guid id)
         {
-            await assignmentService.DeleteAsync(id);
+            await groupService.DeleteAsync(id);
             return NoContent();
         }
     }

@@ -8,11 +8,13 @@ using TaskManager.BusinessLogic.Services;
 
 namespace TaskManager.BusinessLogic.Extensions
 {
-    public static class Extension
+    public static class ServiceExtension
     {
         public static IServiceCollection AddBusinessLogic(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddScoped<IAssignmentService, AssignmentService>();
+            serviceCollection.AddScoped<IGroupService, GroupService>();
+
             return serviceCollection;
         }
     }

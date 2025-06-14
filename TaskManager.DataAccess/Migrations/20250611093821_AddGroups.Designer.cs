@@ -12,8 +12,8 @@ using TaskManager.DataAccess;
 namespace TaskManager.DataAccess.Migrations
 {
     [DbContext(typeof(TaskManagerDbContext))]
-    [Migration("20250605194534_init")]
-    partial class init
+    [Migration("20250611093821_AddGroups")]
+    partial class AddGroups
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,14 +39,51 @@ namespace TaskManager.DataAccess.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)");
 
+                    b.Property<Guid>("GroupId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                        .HasMaxLength(70)
+                        .HasColumnType("character varying(70)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("GroupId");
+
                     b.ToTable("Assignments");
+                });
+
+            modelBuilder.Entity("TaskManager.DataAccess.Entities.Group", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Groups");
+                });
+
+            modelBuilder.Entity("TaskManager.DataAccess.Entities.Assignment", b =>
+                {
+                    b.HasOne("TaskManager.DataAccess.Entities.Group", "Group")
+                        .WithMany("Tasks")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Group");
+                });
+
+            modelBuilder.Entity("TaskManager.DataAccess.Entities.Group", b =>
+                {
+                    b.Navigation("Tasks");
                 });
 #pragma warning restore 612, 618
         }

@@ -12,5 +12,8 @@ namespace TaskManager.DataAccess.Entities
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; }
+
+        public Guid GroupId { get; set; }
+        public Group? Group { get; set; }
     }
 }

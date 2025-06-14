@@ -11,7 +11,7 @@ namespace TaskManager.DataAccess.Repositories
     {
         Task<List<Assignment>> GetAllAssignments();
         Task<Assignment?> GetAssignmentById(Guid id);
-        Task CreateAssignment(Assignment assignment);
+        Task CreateAssignment(Guid groupId, Assignment assignment);
         Task UpdateAssignment(Assignment assignment);
         Task DeleteAssignment(Assignment assignment);
     }

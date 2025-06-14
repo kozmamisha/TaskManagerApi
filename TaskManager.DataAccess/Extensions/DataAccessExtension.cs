@@ -5,7 +5,7 @@ using TaskManager.DataAccess.Repositories;
 
 namespace TaskManager.DataAccess.Extensions
 {
-    public static class TaskManagerExtension
+    public static class DataAccessExtension
     {
         public static IServiceCollection AddDataAccess(this IServiceCollection services, IConfiguration configuration)
         {
@@ -15,6 +15,7 @@ namespace TaskManager.DataAccess.Extensions
             });
 
             services.AddScoped<IAssignmentRepository, AssignmentRepository>();
+            services.AddScoped<IGroupRepository, GroupRepository>();
 
             return services;
         }

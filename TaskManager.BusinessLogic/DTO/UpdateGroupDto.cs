@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace TaskManager.BusinessLogic.DTO
 {
-    public class UpdateAssignmentDto
+    public class UpdateGroupDto
     {
-        public string Title { get; set; } = string.Empty;
-        public string? Description { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
     }
 }

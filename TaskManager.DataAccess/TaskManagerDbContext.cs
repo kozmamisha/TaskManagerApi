@@ -12,10 +12,12 @@ namespace TaskManager.DataAccess
     public class TaskManagerDbContext(DbContextOptions<TaskManagerDbContext> options) : DbContext(options)
     {
         public DbSet<Assignment> Assignments { get; set; }
+        public DbSet<Group> Groups { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new AssignmentConfiguration());
+            modelBuilder.ApplyConfiguration(new GroupConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
