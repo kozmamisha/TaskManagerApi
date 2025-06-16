@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.DataAccess", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.BusinessLogic", "TaskManager.BusinessLogic\TaskManager.BusinessLogic.csproj", "{49301EE4-AD79-4A6A-A0B5-ED420B670A53}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Infrastructure", "TaskManager.Infrastructure\TaskManager.Infrastructure.csproj", "{3D120575-7AE9-4622-B84F-8841E2990964}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{49301EE4-AD79-4A6A-A0B5-ED420B670A53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49301EE4-AD79-4A6A-A0B5-ED420B670A53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49301EE4-AD79-4A6A-A0B5-ED420B670A53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D120575-7AE9-4622-B84F-8841E2990964}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D120575-7AE9-4622-B84F-8841E2990964}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D120575-7AE9-4622-B84F-8841E2990964}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D120575-7AE9-4622-B84F-8841E2990964}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -16,6 +16,7 @@ namespace TaskManager.DataAccess.Extensions
 
             services.AddScoped<IAssignmentRepository, AssignmentRepository>();
             services.AddScoped<IGroupRepository, GroupRepository>();
+            services.AddScoped<IUsersRepository, UsersRepository>();
 
             return services;
         }

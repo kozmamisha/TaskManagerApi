@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaskManager.BusinessLogic.Services;
+using TaskManager.Infrastructure;
 
 namespace TaskManager.BusinessLogic.Extensions
 {
@@ -14,6 +15,10 @@ namespace TaskManager.BusinessLogic.Extensions
         {
             serviceCollection.AddScoped<IAssignmentService, AssignmentService>();
             serviceCollection.AddScoped<IGroupService, GroupService>();
+            serviceCollection.AddScoped<IUsersService, UsersService>();
+
+            serviceCollection.AddScoped<IJwtProvider, JwtProvider>();
+            serviceCollection.AddScoped<IPasswordHasher, PasswordHasher>();
 
             return serviceCollection;
         }
