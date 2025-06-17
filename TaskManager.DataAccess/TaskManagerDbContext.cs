@@ -13,7 +13,7 @@ namespace TaskManager.DataAccess
     {
         public DbSet<Assignment> Assignments { get; set; }
         public DbSet<Group> Groups { get; set; }
-        public DbSet<UserEntity> Users { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

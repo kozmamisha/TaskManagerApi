@@ -28,9 +28,15 @@ namespace TaskManager.BusinessLogic.Services
         {
             var hashedPassword = _passwordHasher.Generate(password);
 
-            var user = User.Create(Guid.NewGuid(), userName, email, hashedPassword);
+            var newUser = new User
+            {
+                Id = new Guid(),
+                UserName = userName,
+                PasswordHash = hashedPassword,
+                Email = email,
+            };
 
-            await _userRepository.Add(user);
+            await _userRepository.Add(newUser);
         }
 
         public async Task<string> Login(string email, string password)

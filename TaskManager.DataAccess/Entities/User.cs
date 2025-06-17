@@ -8,15 +8,6 @@ namespace TaskManager.DataAccess.Entities
 {
     public class User
     {
-        private User() { }
-        public User(Guid id, string username, string email, string password)
-        {
-            Id = id;
-            UserName = username;
-            Email = email;
-            PasswordHash = password;
-        }
-
         public Guid Id { get; set; }
 
         public string UserName { get; set; } = string.Empty;
@@ -24,10 +15,5 @@ namespace TaskManager.DataAccess.Entities
         public string Email { get; set; } = string.Empty;
 
         public string PasswordHash { get; set; } = string.Empty;
-
-        public static User Create(Guid id, string username, string email, string password)
-        {
-            return new User(id, username, email, password);
-        }
     }
 }
