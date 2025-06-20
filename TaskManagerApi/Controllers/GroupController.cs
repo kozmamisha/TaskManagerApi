@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TaskManager.BusinessLogic.DTO;
 using TaskManager.BusinessLogic.Services;
 
@@ -8,6 +9,7 @@ namespace TaskManagerApi.Controllers
     [Route("group")]
     public class GroupController(IGroupService groupService) : ControllerBase
     {
+        [Authorize]
         [HttpPost("create")]
         public async Task<ActionResult> Create(string name)
         {

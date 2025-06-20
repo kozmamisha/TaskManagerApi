@@ -17,9 +17,12 @@ namespace TaskManagerApi.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IResult> Login(LoginUserRequest request)
+        public async Task<IResult> Login([FromBody] LoginUserRequest request)
         {
             var token = await usersService.Login(request.Email, request.Password);
+
+            // better to place name such as "tasty-cookie" in another more safety place
+            HttpContext.Response.Cookies.Append("tasty-cookie", token);
 
             return Results.Ok(token);
         }

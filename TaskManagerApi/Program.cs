@@ -6,7 +6,7 @@ using TaskManager.Infrastructure;
 //using TaskManagerApi.Endpoints;
 using TaskManagerApi.Mappers;
 using AutoMapper;
-//using TaskManagerApi.Extensions;
+using TaskManagerApi.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -20,6 +20,8 @@ builder.Services.AddSwaggerGen();
 //builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.Configure<JwtOptions>(configuration.GetSection(nameof(JwtOptions)));
+
+builder.Services.AddApiAuthentication(builder.Configuration);
 
 builder.Services.AddDataAccess(builder.Configuration);
 builder.Services.AddBusinessLogic();
@@ -42,6 +44,5 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-//app.AddMappedEndpoints();
 
 app.Run();
