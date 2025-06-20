@@ -7,6 +7,7 @@ using TaskManager.Infrastructure;
 using TaskManagerApi.Mappers;
 using AutoMapper;
 using TaskManagerApi.Extensions;
+using Microsoft.AspNetCore.CookiePolicy;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -39,6 +40,14 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// additional protection for cookies
+app.UseCookiePolicy(new CookiePolicyOptions
+{
+    MinimumSameSitePolicy = SameSiteMode.Strict,
+    Secure = CookieSecurePolicy.Always,
+    HttpOnly = HttpOnlyPolicy.Always,
+});
 
 app.UseAuthentication();
 app.UseAuthorization();

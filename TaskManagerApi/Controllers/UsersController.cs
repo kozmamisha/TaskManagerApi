@@ -24,7 +24,7 @@ namespace TaskManagerApi.Controllers
             // better to place name such as "tasty-cookie" in another more safety place
             HttpContext.Response.Cookies.Append("tasty-cookie", token);
 
-            return Results.Ok(token);
+            return Results.Ok();
         }
     }
 }
