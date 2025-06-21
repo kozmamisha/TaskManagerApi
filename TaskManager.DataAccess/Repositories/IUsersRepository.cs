@@ -9,7 +9,7 @@ namespace TaskManager.DataAccess.Repositories
 {
     public interface IUsersRepository
     {
-        Task Add(User user);
-        Task<User> GetByEmail(string email);
+        Task Add(UserEntity user);
+        Task<UserEntity> GetByEmail(string email);
     }
 }

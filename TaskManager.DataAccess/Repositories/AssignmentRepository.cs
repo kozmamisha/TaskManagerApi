@@ -16,7 +16,7 @@ namespace TaskManager.DataAccess.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task CreateAssignment(Guid groupId, Assignment assignment)
+        public async Task CreateAssignment(Guid groupId, AssignmentEntity assignment)
         {
             assignment.CreatedAt = DateTime.UtcNow;
             assignment.GroupId = groupId;
@@ -25,7 +25,7 @@ namespace TaskManager.DataAccess.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<List<Assignment>> GetAllAssignments()
+        public async Task<List<AssignmentEntity>> GetAllAssignments()
         {
             return await _dbContext.Assignments
                 .AsNoTracking()
@@ -33,20 +33,20 @@ namespace TaskManager.DataAccess.Repositories
                 .ToListAsync();
         }
 
-        public async Task<Assignment?> GetAssignmentById(Guid id)
+        public async Task<AssignmentEntity?> GetAssignmentById(Guid id)
         {
             return await _dbContext.Assignments
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task UpdateAssignment(Assignment assignment)
+        public async Task UpdateAssignment(AssignmentEntity assignment)
         {
             _dbContext.Assignments.Update(assignment);
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task DeleteAssignment(Assignment assignment)
+        public async Task DeleteAssignment(AssignmentEntity assignment)
         {
             _dbContext.Assignments.Remove(assignment);
             await _dbContext.SaveChangesAsync();

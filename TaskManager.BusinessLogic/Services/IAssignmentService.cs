@@ -10,8 +10,8 @@ namespace TaskManager.BusinessLogic.Services
 {
     public interface IAssignmentService
     {
-        Task<List<Assignment>> GetAllAsync();
-        Task<Assignment?> GetByIdAsync(Guid id);
+        Task<List<AssignmentEntity>> GetAllAsync();
+        Task<AssignmentEntity?> GetByIdAsync(Guid id);
         Task CreateAsync(string title, string description, Guid groupId);
         Task UpdateAsync(Guid id, UpdateAssignmentDto dto);
         Task DeleteAsync(Guid id);

@@ -20,9 +20,9 @@ namespace TaskManager.DataAccess.Repositories
             _mapper = mapper;
         }
 
-        public async Task Add(User user)
+        public async Task Add(UserEntity user)
         {
-            var newUser = new User
+            var newUser = new UserEntity
             {
                 Id = user.Id,
                 UserName = user.UserName,
@@ -34,7 +34,7 @@ namespace TaskManager.DataAccess.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<User> GetByEmail(string email)
+        public async Task<UserEntity> GetByEmail(string email)
         {
             // generally throw exception is not good
             return await _context.Users

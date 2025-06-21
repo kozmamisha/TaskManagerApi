@@ -11,9 +11,9 @@ namespace TaskManager.DataAccess
 {
     public class TaskManagerDbContext(DbContextOptions<TaskManagerDbContext> options) : DbContext(options)
     {
-        public DbSet<Assignment> Assignments { get; set; }
-        public DbSet<Group> Groups { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<AssignmentEntity> Assignments { get; set; }
+        public DbSet<GroupEntity> Groups { get; set; }
+        public DbSet<UserEntity> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

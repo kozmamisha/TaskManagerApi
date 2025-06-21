@@ -9,9 +9,9 @@ using TaskManager.DataAccess.Entities;
 
 namespace TaskManager.DataAccess.Configurations
 {
-    public class GroupConfiguration : IEntityTypeConfiguration<Group>
+    public class GroupConfiguration : IEntityTypeConfiguration<GroupEntity>
     {
-        public void Configure(EntityTypeBuilder<Group> builder)
+        public void Configure(EntityTypeBuilder<GroupEntity> builder)
         {
             builder.HasKey(x => x.Id);
 

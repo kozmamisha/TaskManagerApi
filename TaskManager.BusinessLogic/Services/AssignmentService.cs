@@ -23,7 +23,7 @@ namespace TaskManager.BusinessLogic.Services
                 throw new ArgumentException("Description cannot be empty");
             }
 
-            var assignment = new Assignment
+            var assignment = new AssignmentEntity
             {
                 Title = title,
                 Description = description
@@ -32,7 +32,7 @@ namespace TaskManager.BusinessLogic.Services
             await assignmentRepository.CreateAssignment(groupId, assignment);
         }
 
-        public async Task<List<Assignment>> GetAllAsync()
+        public async Task<List<AssignmentEntity>> GetAllAsync()
         {
             var assignments = await assignmentRepository.GetAllAssignments();
 
@@ -44,7 +44,7 @@ namespace TaskManager.BusinessLogic.Services
             return assignments;
         }
 
-        public async Task<Assignment?> GetByIdAsync(Guid id)
+        public async Task<AssignmentEntity?> GetByIdAsync(Guid id)
         {
             var assignment = await assignmentRepository.GetAssignmentById(id);
 

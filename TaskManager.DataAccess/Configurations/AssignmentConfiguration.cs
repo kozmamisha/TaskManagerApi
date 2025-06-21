@@ -9,9 +9,9 @@ using TaskManager.DataAccess.Entities;
 
 namespace TaskManager.DataAccess.Configurations
 {
-    public class AssignmentConfiguration : IEntityTypeConfiguration<Assignment>
+    public class AssignmentConfiguration : IEntityTypeConfiguration<AssignmentEntity>
     {
-        public void Configure(EntityTypeBuilder<Assignment> builder)
+        public void Configure(EntityTypeBuilder<AssignmentEntity> builder)
         {
             builder.HasKey(x => x.Id);
 

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace TaskManager.DataAccess.Entities
 {
-    public class Group
+    public class PermissionEntity
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public ICollection<Assignment> Tasks { get; set; } = [];
+        public ICollection<RoleEntity> Roles { get; set; } = [];
     }
 }

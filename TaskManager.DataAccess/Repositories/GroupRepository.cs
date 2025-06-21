@@ -16,19 +16,19 @@ namespace TaskManager.DataAccess.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task CreateGroup(Group group)
+        public async Task CreateGroup(GroupEntity group)
         {
             await _dbContext.Groups.AddAsync(group);
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task DeleteGroup(Group group)
+        public async Task DeleteGroup(GroupEntity group)
         {
             _dbContext.Groups.Remove(group);
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<List<Group>> GetAllGroups()
+        public async Task<List<GroupEntity>> GetAllGroups()
         {
             return await _dbContext.Groups
                 .AsNoTracking()
@@ -36,14 +36,14 @@ namespace TaskManager.DataAccess.Repositories
                 .ToListAsync();
         }
 
-        public async Task<Group?> GetGroupById(Guid id)
+        public async Task<GroupEntity?> GetGroupById(Guid id)
         {
             return await _dbContext.Groups
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task UpdateGroup(Group group)
+        public async Task UpdateGroup(GroupEntity group)
         {
             _dbContext.Groups.Update(group);
             await _dbContext.SaveChangesAsync();

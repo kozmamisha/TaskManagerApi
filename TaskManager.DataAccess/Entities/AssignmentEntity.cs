@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskManager.DataAccess.Entities
 {
-    public class Assignment
+    public class AssignmentEntity
     {
         public Guid Id { get; set; }
         public string Title { get; set; } = string.Empty;
@@ -14,6 +14,6 @@ namespace TaskManager.DataAccess.Entities
         public DateTime CreatedAt { get; set; }
 
         public Guid GroupId { get; set; }
-        public Group? Group { get; set; }
+        public GroupEntity? Group { get; set; }
     }
 }

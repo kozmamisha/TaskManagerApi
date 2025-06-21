@@ -8,8 +8,8 @@ namespace TaskManagerApi.Mappers
     {
         public MappingProfile()
         {
-            CreateMap<User, RegisterUserRequest>().ReverseMap();
-            CreateMap<User, LoginUserRequest>();
+            CreateMap<UserEntity, RegisterUserRequest>().ReverseMap();
+            CreateMap<UserEntity, LoginUserRequest>();
         }
     }
 }

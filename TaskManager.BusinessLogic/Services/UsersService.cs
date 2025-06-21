@@ -28,7 +28,7 @@ namespace TaskManager.BusinessLogic.Services
         {
             var hashedPassword = _passwordHasher.Generate(password);
 
-            var newUser = new User
+            var newUser = new UserEntity
             {
                 Id = new Guid(),
                 UserName = userName,

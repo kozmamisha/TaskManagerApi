@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskManager.DataAccess.Entities
 {
-    public class User
+    public class UserEntity
     {
         public Guid Id { get; set; }
 
@@ -15,5 +15,6 @@ namespace TaskManager.DataAccess.Entities
         public string Email { get; set; } = string.Empty;
 
         public string PasswordHash { get; set; } = string.Empty;
+        public ICollection<RoleEntity> Roles { get; set; } = [];
     }
 }

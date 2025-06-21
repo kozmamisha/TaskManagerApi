@@ -5,8 +5,8 @@ namespace TaskManager.BusinessLogic.Services
 {
     public interface IGroupService
     {
-        Task<List<Group>> GetAllAsync();
-        Task<Group?> GetByIdAsync(Guid id);
+        Task<List<GroupEntity>> GetAllAsync();
+        Task<GroupEntity?> GetByIdAsync(Guid id);
         Task CreateAsync(string name);
         Task UpdateAsync(Guid id, UpdateGroupDto dto);
         Task DeleteAsync(Guid id);

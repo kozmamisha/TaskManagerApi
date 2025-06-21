@@ -18,7 +18,7 @@ namespace TaskManager.BusinessLogic.Services
                 throw new ArgumentException("name cannot be empty");
             }
 
-            var group = new Group
+            var group = new GroupEntity
             {
                 Name = name
             };
@@ -38,7 +38,7 @@ namespace TaskManager.BusinessLogic.Services
             await groupRepository.DeleteGroup(group);
         }
 
-        public async Task<List<Group>> GetAllAsync()
+        public async Task<List<GroupEntity>> GetAllAsync()
         {
             var groups = await groupRepository.GetAllGroups();
 
@@ -50,7 +50,7 @@ namespace TaskManager.BusinessLogic.Services
             return groups;
         }
 
-        public async Task<Group?> GetByIdAsync(Guid id)
+        public async Task<GroupEntity?> GetByIdAsync(Guid id)
         {
             var group = await groupRepository.GetGroupById(id);
 

@@ -36,7 +36,18 @@ namespace TaskManagerApi.Extensions
                     };
                 });
 
-            services.AddAuthorization();
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminPolicy", policy =>
+                {
+                    policy.RequireClaim("Admin", "true");
+                });
+                
+                options.AddPolicy("StudentPolicy", policy =>
+                {
+                    policy.Requirements.Add()
+                });
+            });
         }
     }
 }

@@ -9,10 +9,10 @@ namespace TaskManager.DataAccess.Repositories
 {
     public interface IGroupRepository
     {
-        Task<List<Group>> GetAllGroups();
-        Task<Group?> GetGroupById(Guid id);
-        Task CreateGroup(Group group);
-        Task UpdateGroup(Group group);
-        Task DeleteGroup(Group group);
+        Task<List<GroupEntity>> GetAllGroups();
+        Task<GroupEntity?> GetGroupById(Guid id);
+        Task CreateGroup(GroupEntity group);
+        Task UpdateGroup(GroupEntity group);
+        Task DeleteGroup(GroupEntity group);
     }
 }

@@ -4,6 +4,6 @@ namespace TaskManager.Infrastructure
 {
     public interface IJwtProvider
     {
-        string GenerateToken(User user);
+        string GenerateToken(UserEntity user);
     }
 }

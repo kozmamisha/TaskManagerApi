@@ -9,10 +9,10 @@ namespace TaskManager.DataAccess.Repositories
 {
     public interface IAssignmentRepository
     {
-        Task<List<Assignment>> GetAllAssignments();
-        Task<Assignment?> GetAssignmentById(Guid id);
-        Task CreateAssignment(Guid groupId, Assignment assignment);
-        Task UpdateAssignment(Assignment assignment);
-        Task DeleteAssignment(Assignment assignment);
+        Task<List<AssignmentEntity>> GetAllAssignments();
+        Task<AssignmentEntity?> GetAssignmentById(Guid id);
+        Task CreateAssignment(Guid groupId, AssignmentEntity assignment);
+        Task UpdateAssignment(AssignmentEntity assignment);
+        Task DeleteAssignment(AssignmentEntity assignment);
     }
 }
