@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaskManager.DataAccess.Enums
+namespace TaskManager.Infrastructure
 {
-    public enum RoleEnum
+    public class CustomClaims
     {
-        Admin = 1,
-        User = 2
+        internal const string UserId = "userId";
     }
 }

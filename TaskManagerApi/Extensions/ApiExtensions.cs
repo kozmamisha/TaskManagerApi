@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using TaskManager.BusinessLogic.Services;
 using TaskManager.Infrastructure;
 
 namespace TaskManagerApi.Extensions
@@ -36,18 +38,10 @@ namespace TaskManagerApi.Extensions
                     };
                 });
 
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("AdminPolicy", policy =>
-                {
-                    policy.RequireClaim("Admin", "true");
-                });
-                
-                options.AddPolicy("StudentPolicy", policy =>
-                {
-                    policy.Requirements.Add()
-                });
-            });
+            services.AddScoped<IPermissionService, PermissionService>();
+            services.AddSingleton<IAuthorizationHandler, PermissionAuthorizationHandler>();
+
+            services.AddAuthorization();
         }
     }
 }

@@ -8,6 +8,7 @@ using TaskManagerApi.Mappers;
 using AutoMapper;
 using TaskManagerApi.Extensions;
 using Microsoft.AspNetCore.CookiePolicy;
+using TaskManager.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -21,6 +22,7 @@ builder.Services.AddSwaggerGen();
 //builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.Configure<JwtOptions>(configuration.GetSection(nameof(JwtOptions)));
+builder.Services.Configure<AuthorizationOptions>(configuration.GetSection(nameof(AuthorizationOptions)));
 
 builder.Services.AddApiAuthentication(builder.Configuration);
 

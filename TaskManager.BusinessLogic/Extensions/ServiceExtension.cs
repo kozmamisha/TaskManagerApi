@@ -16,6 +16,7 @@ namespace TaskManager.BusinessLogic.Extensions
             serviceCollection.AddScoped<IAssignmentService, AssignmentService>();
             serviceCollection.AddScoped<IGroupService, GroupService>();
             serviceCollection.AddScoped<IUsersService, UsersService>();
+            serviceCollection.AddScoped<IPermissionService, PermissionService>();
 
             serviceCollection.AddScoped<IJwtProvider, JwtProvider>();
             serviceCollection.AddScoped<IPasswordHasher, PasswordHasher>();

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaskManager.DataAccess.Entities;
+using TaskManager.DataAccess.Enums;
 
 namespace TaskManager.DataAccess.Repositories
 {
@@ -11,5 +12,6 @@ namespace TaskManager.DataAccess.Repositories
     {
         Task Add(UserEntity user);
         Task<UserEntity> GetByEmail(string email);
+        Task<HashSet<PermissionEnum>> GetUserPermissions(Guid userId);
     }
 }

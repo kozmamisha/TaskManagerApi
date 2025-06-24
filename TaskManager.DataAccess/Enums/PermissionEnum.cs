@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaskManager.BusinessLogic.Enums
+namespace TaskManager.DataAccess.Enums
 {
     public enum PermissionEnum
     {

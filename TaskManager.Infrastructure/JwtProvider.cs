@@ -18,8 +18,7 @@ namespace TaskManager.Infrastructure
         public string GenerateToken(UserEntity user)
         {
             Claim[] claims = [
-                new("userId", user.Id.ToString()),
-                new ("Admin", "true"),
+                new(CustomClaims.UserId, user.Id.ToString())
             ];
 
             var signinCredentials = new SigningCredentials(

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TaskManager.BusinessLogic.DTO;
 using TaskManager.BusinessLogic.Services;
+using TaskManager.DataAccess.Enums;
 
 namespace TaskManagerApi.Controllers
 {
@@ -9,7 +10,7 @@ namespace TaskManagerApi.Controllers
     [Route("group")]
     public class GroupController(IGroupService groupService) : ControllerBase
     {
-        [Authorize]
+        [Authorize(Policy = "Admin")]
         [HttpPost("create")]
         public async Task<ActionResult> Create(string name)
         {
