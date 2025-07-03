@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskManager.BusinessLogic.Services;
+using TaskManagerApi.Authorization;
 
-namespace TaskManager.Infrastructure
+namespace TaskManagerApi.Authorization
 {
     public class PermissionAuthorizationHandler : AuthorizationHandler<PermissionRequirements>
     {
@@ -24,7 +26,7 @@ namespace TaskManager.Infrastructure
 
             if (userId is null || !Guid.TryParse(userId.Value, out var id))
             {
-                return;
+                return; // rewrite with exception
             }
 
             using var scope = _serviceScopeFactory.CreateScope();

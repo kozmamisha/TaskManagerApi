@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaskManager.Infrastructure
+namespace TaskManagerApi.Authorization
 {
     public class JwtOptions
     {

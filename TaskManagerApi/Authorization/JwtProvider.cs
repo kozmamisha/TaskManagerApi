@@ -8,8 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaskManager.DataAccess.Entities;
+using TaskManager.BusinessLogic.Interfaces;
 
-namespace TaskManager.Infrastructure
+namespace TaskManagerApi.Authorization
 {
     public class JwtProvider(IOptions<JwtOptions> options) : IJwtProvider
     {

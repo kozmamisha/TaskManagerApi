@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using TaskManager.BusinessLogic.Services;
-using TaskManager.Infrastructure;
+using TaskManager.BusinessLogic.Interfaces;
+using TaskManagerApi.Authorization;
 
 namespace TaskManagerApi.Extensions
 {
@@ -38,7 +39,10 @@ namespace TaskManagerApi.Extensions
                     };
                 });
 
-            services.AddScoped<IPermissionService, PermissionService>();
+            //services.AddScoped<IPermissionService, PermissionService>();
+            services.AddScoped<IJwtProvider, JwtProvider>();
+            services.AddScoped<IPasswordHasher, PasswordHasher>();
+
             services.AddSingleton<IAuthorizationHandler, PermissionAuthorizationHandler>();
 
             services.AddAuthorization();

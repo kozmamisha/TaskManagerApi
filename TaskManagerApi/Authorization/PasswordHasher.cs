@@ -1,6 +1,7 @@
 ﻿using System.Security.Cryptography.X509Certificates;
+using TaskManager.BusinessLogic.Interfaces;
 
-namespace TaskManager.Infrastructure
+namespace TaskManagerApi.Authorization
 {
     public class PasswordHasher : IPasswordHasher
     {

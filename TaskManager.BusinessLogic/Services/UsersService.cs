@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskManager.BusinessLogic.Interfaces;
 using TaskManager.DataAccess.Entities;
 using TaskManager.DataAccess.Repositories;
-using TaskManager.Infrastructure;
 
 namespace TaskManager.BusinessLogic.Services
 {

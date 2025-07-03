@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TaskManager.BusinessLogic.Enums;
 using TaskManager.DataAccess.Entities;
+using TaskManager.DataAccess.Enums;
 
 namespace TaskManager.DataAccess.Configurations
 {

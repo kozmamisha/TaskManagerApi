@@ -1,6 +1,6 @@
 ﻿using TaskManager.DataAccess.Entities;
 
-namespace TaskManager.Infrastructure
+namespace TaskManager.BusinessLogic.Interfaces
 {
     public interface IJwtProvider
     {

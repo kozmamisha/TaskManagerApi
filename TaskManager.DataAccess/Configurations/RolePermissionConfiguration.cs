@@ -34,7 +34,7 @@ namespace TaskManager.DataAccess.Configurations
                         RoleId = (int)Enum.Parse<RoleEnum>(rp.Role),
                         PermissionId = (int)Enum.Parse<PermissionEnum>(p)
                     }))
-                .ToArray();
+                    .ToArray();
         }
     }
 }

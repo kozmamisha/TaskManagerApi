@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TaskManager.DataAccess\TaskManager.DataAccess.csproj" />
-    <ProjectReference Include="..\TaskManager.Infrastructure\TaskManager.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

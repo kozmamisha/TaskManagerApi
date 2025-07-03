@@ -10,7 +10,7 @@ namespace TaskManagerApi.Controllers
     [Route("group")]
     public class GroupController(IGroupService groupService) : ControllerBase
     {
-        [Authorize(Policy = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost("create")]
         public async Task<ActionResult> Create(string name)
         {

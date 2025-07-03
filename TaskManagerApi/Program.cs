@@ -2,13 +2,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using TaskManager.BusinessLogic.Extensions;
 using TaskManager.DataAccess.Extensions;
-using TaskManager.Infrastructure;
 //using TaskManagerApi.Endpoints;
 using TaskManagerApi.Mappers;
 using AutoMapper;
 using TaskManagerApi.Extensions;
 using Microsoft.AspNetCore.CookiePolicy;
 using TaskManager.DataAccess;
+using TaskManagerApi.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -42,6 +42,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 // additional protection for cookies
 app.UseCookiePolicy(new CookiePolicyOptions

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaskManager.DataAccess.Enums;
 
-namespace TaskManager.Infrastructure
+namespace TaskManagerApi.Authorization
 {
     public class PermissionRequirements(PermissionEnum[] permissions) : IAuthorizationRequirement
     {
