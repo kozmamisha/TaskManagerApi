@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaskManager.BusinessLogic.Interfaces;
 using TaskManager.DataAccess.Entities;
+using TaskManager.DataAccess.Enums;
 using TaskManager.DataAccess.Repositories;
 
 namespace TaskManager.BusinessLogic.Services

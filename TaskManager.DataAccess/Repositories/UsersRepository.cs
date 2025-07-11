@@ -26,7 +26,8 @@ namespace TaskManager.DataAccess.Repositories
             var roleEntity = await _context.Roles
                 .SingleOrDefaultAsync(r => r.Id == (int)RoleEnum.Admin)
                 ?? throw new InvalidOperationException();
-            var newUser = new UserEntity
+
+            var newUser = new UserEntity()
             {
                 Id = user.Id,
                 UserName = user.UserName,

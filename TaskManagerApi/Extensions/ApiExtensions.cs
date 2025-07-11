@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using TaskManager.BusinessLogic.Interfaces;
+using TaskManager.BusinessLogic.Services;
 using TaskManagerApi.Authorization;
 
 namespace TaskManagerApi.Extensions
@@ -14,7 +15,8 @@ namespace TaskManagerApi.Extensions
         {
             var jwtOptions = configuration.GetSection(nameof(JwtOptions)).Get<JwtOptions>();
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            services
+                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
                 {
                     // it will take and try to validate token from Authorization header
@@ -39,7 +41,7 @@ namespace TaskManagerApi.Extensions
                     };
                 });
 
-            //services.AddScoped<IPermissionService, PermissionService>();
+            services.AddScoped<IPermissionService, PermissionService>();
             services.AddScoped<IJwtProvider, JwtProvider>();
             services.AddScoped<IPasswordHasher, PasswordHasher>();
 

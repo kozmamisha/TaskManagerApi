@@ -2,29 +2,31 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using TaskManager.BusinessLogic.Extensions;
 using TaskManager.DataAccess.Extensions;
-//using TaskManagerApi.Endpoints;
 using TaskManagerApi.Mappers;
 using AutoMapper;
 using TaskManagerApi.Extensions;
 using Microsoft.AspNetCore.CookiePolicy;
 using TaskManager.DataAccess;
 using TaskManagerApi.Authorization;
+using TaskManager.DataAccess.Enums;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
-
-// Add services to the container.
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
 
-//builder.Services.AddEndpointsApiExplorer();
-
 builder.Services.Configure<JwtOptions>(configuration.GetSection(nameof(JwtOptions)));
 builder.Services.Configure<AuthorizationOptions>(configuration.GetSection(nameof(AuthorizationOptions)));
 
 builder.Services.AddApiAuthentication(builder.Configuration);
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy =>
+         policy.Requirements.Add(new PermissionRequirements([PermissionEnum.Create])));
+});
 
 builder.Services.AddDataAccess(builder.Configuration);
 builder.Services.AddBusinessLogic();
@@ -33,7 +35,6 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
