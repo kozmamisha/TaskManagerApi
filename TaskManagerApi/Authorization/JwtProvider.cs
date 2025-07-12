@@ -20,7 +20,7 @@ namespace TaskManagerApi.Authorization
         {
             Claim[] claims = [
                 new(CustomClaims.UserId, user.Id.ToString()),
-                new(CustomClaims.Role, "User"),
+                new(CustomClaims.Role, "Admin"),
             ];
 
             var signinCredentials = new SigningCredentials(

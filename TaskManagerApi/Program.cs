@@ -22,12 +22,6 @@ builder.Services.Configure<AuthorizationOptions>(configuration.GetSection(nameof
 
 builder.Services.AddApiAuthentication(builder.Configuration);
 
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("AdminOnly", policy =>
-         policy.Requirements.Add(new PermissionRequirements([PermissionEnum.Create])));
-});
-
 builder.Services.AddDataAccess(builder.Configuration);
 builder.Services.AddBusinessLogic();
 

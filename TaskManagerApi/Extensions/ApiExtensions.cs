@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using TaskManager.BusinessLogic.Interfaces;
 using TaskManager.BusinessLogic.Services;
+using TaskManager.DataAccess.Enums;
 using TaskManagerApi.Authorization;
 
 namespace TaskManagerApi.Extensions
@@ -16,6 +17,10 @@ namespace TaskManagerApi.Extensions
             var jwtOptions = configuration.GetSection(nameof(JwtOptions)).Get<JwtOptions>();
 
             services
+                .AddAuthorization(x => 
+                    x.AddPolicy(nameof(PermissionEnum.Create),
+                    builder => builder
+                        .Requirements.Add(new PermissionRequirements([PermissionEnum.Create]))))
                 .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
                 {

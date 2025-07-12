@@ -24,7 +24,7 @@ namespace TaskManager.DataAccess.Repositories
         public async Task Add(UserEntity user)
         {
             var roleEntity = await _context.Roles
-                .SingleOrDefaultAsync(r => r.Id == (int)RoleEnum.Admin)
+                .SingleOrDefaultAsync(r => r.Id == (int)RoleEnum.User)
                 ?? throw new InvalidOperationException();
 
             var newUser = new UserEntity()
