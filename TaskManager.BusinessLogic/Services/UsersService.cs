@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TaskManager.BusinessLogic.Interfaces;
 using TaskManager.DataAccess.Entities;
 using TaskManager.DataAccess.Enums;
-using TaskManager.DataAccess.Repositories;
+using TaskManager.DataAccess.Interfaces;
 
 namespace TaskManager.BusinessLogic.Services
 {
@@ -44,11 +44,16 @@ namespace TaskManager.BusinessLogic.Services
         {
             var user = await _userRepository.GetByEmail(email);
 
+            if(user is null)
+            {
+                throw new UnauthorizedAccessException("Invalid email or password.");
+            }
+
             var result = _passwordHasher.Verify(password, user.PasswordHash);
 
             if (result == false)
             {
-                throw new Exception("Invalid email or password.");
+                throw new UnauthorizedAccessException("Invalid email or password.");
             }
 
             var token = _jwtProvider.GenerateToken(user);

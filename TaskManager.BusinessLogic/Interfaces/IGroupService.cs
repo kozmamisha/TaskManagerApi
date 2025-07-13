@@ -1,7 +1,7 @@
 ﻿using TaskManager.BusinessLogic.DTO;
 using TaskManager.DataAccess.Entities;
 
-namespace TaskManager.BusinessLogic.Services
+namespace TaskManager.BusinessLogic.Interfaces
 {
     public interface IGroupService
     {

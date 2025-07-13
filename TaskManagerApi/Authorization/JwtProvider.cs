@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaskManager.DataAccess.Entities;
 using TaskManager.BusinessLogic.Interfaces;
+using TaskManager.DataAccess.Enums;
 
 namespace TaskManagerApi.Authorization
 {
@@ -20,7 +21,7 @@ namespace TaskManagerApi.Authorization
         {
             Claim[] claims = [
                 new(CustomClaims.UserId, user.Id.ToString()),
-                new(CustomClaims.Role, "Admin"),
+                new(CustomClaims.Role, RoleEnum.Admin.ToString()),
             ];
 
             var signinCredentials = new SigningCredentials(

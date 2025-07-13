@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TaskManager.DataAccess.Entities;
 using TaskManager.DataAccess.Enums;
 
-namespace TaskManager.DataAccess.Repositories
+namespace TaskManager.DataAccess.Interfaces
 {
     public interface IUsersRepository
     {

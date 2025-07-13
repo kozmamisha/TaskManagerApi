@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TaskManager.BusinessLogic.DTO;
-using TaskManager.BusinessLogic.Services;
+using TaskManager.BusinessLogic.Interfaces;
 using TaskManager.DataAccess.Enums;
 
 namespace TaskManagerApi.Controllers

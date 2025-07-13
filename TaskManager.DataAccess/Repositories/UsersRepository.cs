@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaskManager.DataAccess.Entities;
 using TaskManager.DataAccess.Enums;
+using TaskManager.DataAccess.Interfaces;
 
 namespace TaskManager.DataAccess.Repositories
 {
@@ -25,7 +26,7 @@ namespace TaskManager.DataAccess.Repositories
         {
             var roleEntity = await _context.Roles
                 .SingleOrDefaultAsync(r => r.Id == (int)RoleEnum.User)
-                ?? throw new InvalidOperationException();
+                ?? throw new Exception("Role not found");
 
             var newUser = new UserEntity()
             {
@@ -40,12 +41,11 @@ namespace TaskManager.DataAccess.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<UserEntity> GetByEmail(string email)
+        public async Task<UserEntity?> GetByEmail(string email)
         {
-            // generally throw exception is not good
             return await _context.Users
                 .AsNoTracking()
-                .FirstOrDefaultAsync(u => u.Email == email) ?? throw new Exception($"User with email {email} not found.");
+                .FirstOrDefaultAsync(u => u.Email == email);
         }
 
         public async Task<HashSet<PermissionEnum>> GetUserPermissions(Guid userId)

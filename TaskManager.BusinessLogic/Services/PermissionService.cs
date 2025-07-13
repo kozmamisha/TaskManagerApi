@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskManager.BusinessLogic.Interfaces;
 using TaskManager.DataAccess.Enums;
-using TaskManager.DataAccess.Repositories;
+using TaskManager.DataAccess.Interfaces;
 
 namespace TaskManager.BusinessLogic.Services
 {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TaskManager.BusinessLogic.DTO;
 using TaskManager.DataAccess.Entities;
 
-namespace TaskManager.BusinessLogic.Services
+namespace TaskManager.BusinessLogic.Interfaces
 {
     public interface IAssignmentService
     {

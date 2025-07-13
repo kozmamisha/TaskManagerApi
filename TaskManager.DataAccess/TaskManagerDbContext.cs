@@ -26,7 +26,6 @@ namespace TaskManager.DataAccess
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new PermissionConfiguration());
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
-
             modelBuilder.ApplyConfiguration(new RolePermissionConfiguration(authOptions.Value));
 
             base.OnModelCreating(modelBuilder);

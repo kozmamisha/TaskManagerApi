@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TaskManager.BusinessLogic.Services;
+using TaskManager.BusinessLogic.Interfaces;
 using TaskManagerApi.Contracts.Users;
 
 namespace TaskManagerApi.Controllers

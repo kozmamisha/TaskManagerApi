@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaskManager.DataAccess.Entities;
+using TaskManager.DataAccess.Interfaces;
 
 namespace TaskManager.DataAccess.Repositories
 {

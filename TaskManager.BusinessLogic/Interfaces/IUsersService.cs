@@ -1,5 +1,4 @@
-﻿
-namespace TaskManager.BusinessLogic.Services
+﻿namespace TaskManager.BusinessLogic.Interfaces
 {
     public interface IUsersService
     {

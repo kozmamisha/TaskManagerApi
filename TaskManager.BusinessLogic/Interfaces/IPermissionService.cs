@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaskManager.DataAccess.Enums;
 
-namespace TaskManager.BusinessLogic.Services
+namespace TaskManager.BusinessLogic.Interfaces
 {
     public interface IPermissionService
     {

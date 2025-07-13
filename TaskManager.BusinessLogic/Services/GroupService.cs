@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaskManager.BusinessLogic.DTO;
+using TaskManager.BusinessLogic.Interfaces;
 using TaskManager.DataAccess.Entities;
-using TaskManager.DataAccess.Repositories;
+using TaskManager.DataAccess.Interfaces;
 
 namespace TaskManager.BusinessLogic.Services
 {
@@ -42,22 +43,12 @@ namespace TaskManager.BusinessLogic.Services
         {
             var groups = await groupRepository.GetAllGroups();
 
-            if (groups is null)
-            {
-                throw new Exception("Groups not found");
-            }
-
             return groups;
         }
 
         public async Task<GroupEntity?> GetByIdAsync(Guid id)
         {
             var group = await groupRepository.GetGroupById(id);
-
-            if (group is null)
-            {
-                throw new Exception("Group is not found");
-            }
 
             return group;
         }

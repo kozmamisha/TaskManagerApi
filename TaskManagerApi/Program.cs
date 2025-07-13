@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.CookiePolicy;
 using TaskManager.DataAccess;
 using TaskManagerApi.Authorization;
 using TaskManager.DataAccess.Enums;
+using TaskManagerApi.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -28,6 +29,8 @@ builder.Services.AddBusinessLogic();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {

@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaskManager.BusinessLogic.DTO;
+using TaskManager.BusinessLogic.Interfaces;
 using TaskManager.DataAccess.Entities;
-using TaskManager.DataAccess.Repositories;
+using TaskManager.DataAccess.Interfaces;
 
 namespace TaskManager.BusinessLogic.Services
 {
@@ -36,22 +37,12 @@ namespace TaskManager.BusinessLogic.Services
         {
             var assignments = await assignmentRepository.GetAllAssignments();
 
-            if (assignments is null)
-            {
-                throw new Exception("Tasks not found");
-            }
-
             return assignments;
         }
 
         public async Task<AssignmentEntity?> GetByIdAsync(Guid id)
         {
             var assignment = await assignmentRepository.GetAssignmentById(id);
-
-            if (assignment is null)
-            {
-                throw new Exception("This task not found");
-            }
 
             return assignment;
         }
