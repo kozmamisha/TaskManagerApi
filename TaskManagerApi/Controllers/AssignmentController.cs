@@ -10,7 +10,7 @@ namespace TaskManagerApi.Controllers
     public class AssignmentController(IAssignmentService assignmentService) : ControllerBase
     {
         [HttpPost("create")]
-        public async Task<ActionResult> Create(string title, string description, Guid groupId)
+        public async Task<ActionResult> Create(string title, string? description, Guid groupId)
         {
             await assignmentService.CreateAsync(title, description, groupId);
             return Created();

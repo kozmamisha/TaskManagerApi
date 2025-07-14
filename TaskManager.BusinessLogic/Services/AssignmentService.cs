@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaskManager.BusinessLogic.DTO;
+using TaskManager.BusinessLogic.Exceptions;
 using TaskManager.BusinessLogic.Interfaces;
 using TaskManager.DataAccess.Entities;
 using TaskManager.DataAccess.Interfaces;
@@ -12,22 +13,22 @@ namespace TaskManager.BusinessLogic.Services
 {
     public class AssignmentService(IAssignmentRepository assignmentRepository) : IAssignmentService
     {
-        public async Task CreateAsync(string title, string description, Guid groupId)
+        public async Task CreateAsync(string title, string? description, Guid groupId)
         {
             if (string.IsNullOrWhiteSpace(title))
             {
-                throw new ArgumentException("Title cannot be empty");
+                throw new BadRequestException("Title cannot be empty");
             }            
-            
-            if (string.IsNullOrWhiteSpace(description))
+
+            if (groupId == Guid.Empty)
             {
-                throw new ArgumentException("Description cannot be empty");
+                throw new BadRequestException("Group ID cannot be empty");
             }
 
             var assignment = new AssignmentEntity
             {
                 Title = title,
-                Description = description
+                Description = description ?? "",
             };
 
             await assignmentRepository.CreateAssignment(groupId, assignment);
@@ -53,11 +54,16 @@ namespace TaskManager.BusinessLogic.Services
 
             if (currentAssignment is null)
             {
-                throw new Exception("This task not found");
+                throw new BadRequestException("This task not found");
             }
 
             currentAssignment.Title = dto.Title;
             currentAssignment.Description = dto.Description;
+
+            if (currentAssignment.Title == string.Empty)
+            {
+                throw new BadRequestException("Title can not be empty");
+            }
 
             await assignmentRepository.UpdateAssignment(currentAssignment);
         }

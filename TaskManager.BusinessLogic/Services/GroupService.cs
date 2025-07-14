@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaskManager.BusinessLogic.DTO;
+using TaskManager.BusinessLogic.Exceptions;
 using TaskManager.BusinessLogic.Interfaces;
 using TaskManager.DataAccess.Entities;
 using TaskManager.DataAccess.Interfaces;
@@ -59,10 +60,15 @@ namespace TaskManager.BusinessLogic.Services
 
             if (group is null)
             {
-                throw new Exception("This task not found");
+                throw new BadRequestException("This task not found");
             }
 
             group.Name = dto.Name;
+
+            if(group.Name == string.Empty)
+            {
+                throw new BadRequestException("Name cannot be empty");
+            }
 
             await groupRepository.UpdateGroup(group);
         }

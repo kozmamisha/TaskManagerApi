@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Text.Json;
 using TaskManager.BusinessLogic.DTO;
+using TaskManager.BusinessLogic.Exceptions;
 
 namespace TaskManagerApi.Middlewares
 {
@@ -31,6 +32,14 @@ namespace TaskManagerApi.Middlewares
                     ex.Message, 
                     HttpStatusCode.NotFound, 
                     "Resource not found");
+            }
+            catch(BadRequestException ex)
+            {
+                await HandleExceptionAsync(
+                    context, 
+                    ex.Message, 
+                    HttpStatusCode.BadRequest, 
+                    ex.Message);
             }
             catch (Exception ex)
             {
