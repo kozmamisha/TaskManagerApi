@@ -1,12 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using TaskManager.BusinessLogic.Interfaces;
+using TaskManagerApi.Authorization;
 using TaskManagerApi.Contracts.Users;
 
 namespace TaskManagerApi.Controllers
 {
     [ApiController]
     [Route("users")]
-    public class UsersController(IUsersService usersService) : ControllerBase
+    public class UsersController(IUsersService usersService, IOptions<AuthOptions> options) : ControllerBase
     {
         [HttpPost("register")]
         public async Task<IResult> Register(RegisterUserRequest request)
@@ -21,8 +23,7 @@ namespace TaskManagerApi.Controllers
         {
             var token = await usersService.Login(request.Email, request.Password);
 
-            // better to place name such as "tasty-cookie" in another more safety place
-            HttpContext.Response.Cookies.Append("tasty-cookie", token);
+            HttpContext.Response.Cookies.Append(options.Value.CookieName, token);
 
             return Results.Ok();
         }

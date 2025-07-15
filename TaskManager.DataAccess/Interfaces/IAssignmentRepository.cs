@@ -11,7 +11,7 @@ namespace TaskManager.DataAccess.Interfaces
     {
         Task<List<AssignmentEntity>> GetAllAssignments();
         Task<AssignmentEntity?> GetAssignmentById(Guid id);
-        Task CreateAssignment(Guid groupId, AssignmentEntity assignment);
+        Task CreateAssignment(AssignmentEntity assignment);
         Task UpdateAssignment(AssignmentEntity assignment);
         Task DeleteAssignment(AssignmentEntity assignment);
     }

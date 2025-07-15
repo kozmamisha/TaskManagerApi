@@ -11,27 +11,26 @@ using TaskManager.DataAccess.Interfaces;
 
 namespace TaskManager.BusinessLogic.Services
 {
-    public class AssignmentService(IAssignmentRepository assignmentRepository) : IAssignmentService
+    public class AssignmentService(IAssignmentRepository assignmentRepository, IGroupRepository groupRepository) : IAssignmentService
     {
         public async Task CreateAsync(string title, string? description, Guid groupId)
         {
+            var currentGroup = await groupRepository.GetGroupById(groupId)
+                ?? throw new NotFoundException("Group not found");
+
             if (string.IsNullOrWhiteSpace(title))
             {
                 throw new BadRequestException("Title cannot be empty");
-            }            
-
-            if (groupId == Guid.Empty)
-            {
-                throw new BadRequestException("Group ID cannot be empty");
             }
 
             var assignment = new AssignmentEntity
             {
                 Title = title,
                 Description = description ?? "",
+                GroupId = groupId
             };
 
-            await assignmentRepository.CreateAssignment(groupId, assignment);
+            await assignmentRepository.CreateAssignment(assignment);
         }
 
         public async Task<List<AssignmentEntity>> GetAllAsync()
@@ -43,19 +42,16 @@ namespace TaskManager.BusinessLogic.Services
 
         public async Task<AssignmentEntity?> GetByIdAsync(Guid id)
         {
-            var assignment = await assignmentRepository.GetAssignmentById(id);
+            var assignment = await assignmentRepository.GetAssignmentById(id)
+                ?? throw new NotFoundException("This task not found");
 
             return assignment;
         }
 
         public async Task UpdateAsync(Guid id, UpdateAssignmentDto dto)
         {
-            var currentAssignment = await assignmentRepository.GetAssignmentById(id);
-
-            if (currentAssignment is null)
-            {
-                throw new BadRequestException("This task not found");
-            }
+            var currentAssignment = await assignmentRepository.GetAssignmentById(id) 
+                ?? throw new NotFoundException("This task not found");
 
             currentAssignment.Title = dto.Title;
             currentAssignment.Description = dto.Description;
@@ -70,12 +66,8 @@ namespace TaskManager.BusinessLogic.Services
 
         public async Task DeleteAsync(Guid id)
         {
-            var assignment = await assignmentRepository.GetAssignmentById(id);
-
-            if (assignment is null)
-            {
-                throw new Exception("Task is not found");
-            }
+            var assignment = await assignmentRepository.GetAssignmentById(id)
+                ?? throw new NotFoundException("This task not found");
 
             await assignmentRepository.DeleteAssignment(assignment);
         }

@@ -25,29 +25,17 @@ namespace TaskManagerApi.Middlewares
             {
                 await _next(context);
             }
-            catch(KeyNotFoundException ex)
-            {
-                await HandleExceptionAsync(
-                    context, 
-                    ex.Message, 
-                    HttpStatusCode.NotFound, 
-                    "Resource not found");
-            }
-            catch(BadRequestException ex)
-            {
-                await HandleExceptionAsync(
-                    context, 
-                    ex.Message, 
-                    HttpStatusCode.BadRequest, 
-                    ex.Message);
-            }
             catch (Exception ex)
             {
-                await HandleExceptionAsync(
-                    context, 
-                    ex.Message, 
-                    HttpStatusCode.InternalServerError, 
-                    "Internal server error");
+                var (statusCode, message) = ex switch
+                {
+                    BadRequestException => (HttpStatusCode.BadRequest, ex.Message),
+                    NotFoundException => (HttpStatusCode.NotFound, ex.Message),
+                    UnauthorizedAccessException => (HttpStatusCode.Unauthorized, ex.Message),
+                    _ => (HttpStatusCode.InternalServerError, "Internal server error")
+                };
+
+                await HandleExceptionAsync(context, ex.Message, statusCode, message);
             }
         }
 

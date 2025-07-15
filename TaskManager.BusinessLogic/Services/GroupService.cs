@@ -17,7 +17,7 @@ namespace TaskManager.BusinessLogic.Services
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                throw new ArgumentException("name cannot be empty");
+                throw new BadRequestException("Name cannot be empty");
             }
 
             var group = new GroupEntity
@@ -30,12 +30,8 @@ namespace TaskManager.BusinessLogic.Services
 
         public async Task DeleteAsync(Guid id)
         {
-            var group = await groupRepository.GetGroupById(id);
-
-            if (group is null)
-            {
-                throw new Exception("Group is not found");
-            }
+            var group = await groupRepository.GetGroupById(id)
+                ?? throw new NotFoundException("This group not found");
 
             await groupRepository.DeleteGroup(group);
         }
@@ -49,19 +45,16 @@ namespace TaskManager.BusinessLogic.Services
 
         public async Task<GroupEntity?> GetByIdAsync(Guid id)
         {
-            var group = await groupRepository.GetGroupById(id);
+            var group = await groupRepository.GetGroupById(id)
+                ?? throw new NotFoundException("This group not found");
 
             return group;
         }
 
         public async Task UpdateAsync(Guid id, UpdateGroupDto dto)
         {
-            var group = await groupRepository.GetGroupById(id);
-
-            if (group is null)
-            {
-                throw new BadRequestException("This task not found");
-            }
+            var group = await groupRepository.GetGroupById(id)
+                ?? throw new NotFoundException("This group not found");
 
             group.Name = dto.Name;
 

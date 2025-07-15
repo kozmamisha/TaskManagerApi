@@ -15,6 +15,9 @@ namespace TaskManager.DataAccess.Configurations
         {
             builder.HasKey(x => x.Id);
 
+            builder.Property(a => a.GroupId)
+                .IsRequired();
+
             builder
                 .HasOne(a => a.Group)
                 .WithMany(g => g.Tasks)

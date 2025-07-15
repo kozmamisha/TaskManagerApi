@@ -20,6 +20,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.Configure<JwtOptions>(configuration.GetSection(nameof(JwtOptions)));
 builder.Services.Configure<AuthorizationOptions>(configuration.GetSection(nameof(AuthorizationOptions)));
+builder.Services.Configure<AuthOptions>(builder.Configuration.GetSection("Auth"));
 
 builder.Services.AddApiAuthentication(builder.Configuration);
 
