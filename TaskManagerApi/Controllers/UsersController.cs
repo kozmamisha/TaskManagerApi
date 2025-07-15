@@ -11,21 +11,21 @@ namespace TaskManagerApi.Controllers
     public class UsersController(IUsersService usersService, IOptions<AuthOptions> options) : ControllerBase
     {
         [HttpPost("register")]
-        public async Task<IResult> Register(RegisterUserRequest request)
+        public async Task<ActionResult> Register(RegisterUserRequest request)
         {
             await usersService.Register(request.UserName, request.Email, request.Password);
 
-            return Results.Ok();
+            return Created();
         }
 
         [HttpPost("login")]
-        public async Task<IResult> Login([FromBody] LoginUserRequest request)
+        public async Task<ActionResult> Login([FromBody] LoginUserRequest request)
         {
             var token = await usersService.Login(request.Email, request.Password);
 
             HttpContext.Response.Cookies.Append(options.Value.CookieName, token);
 
-            return Results.Ok();
+            return Created();
         }
     }
 }

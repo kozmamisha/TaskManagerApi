@@ -26,8 +26,16 @@ namespace TaskManager.BusinessLogic.Services
             _passwordHasher = passwordHasher;
             _jwtProvider = jwtProvider;
         }
+
         public async Task Register(string userName, string email, string password)
         {
+            var existingUser = await _userRepository.GetByEmail(email);
+
+            if (existingUser is not null)
+            {
+                throw new BadRequestException("User with this email already exists");
+            }
+
             var hashedPassword = _passwordHasher.Generate(password);
 
             var newUser = new UserEntity
@@ -43,13 +51,8 @@ namespace TaskManager.BusinessLogic.Services
 
         public async Task<string> Login(string email, string password)
         {
-            var user = await _userRepository.GetByEmail(email);
-
-            if(user is null)
-            {
-                throw new UnauthorizedAccessException("Invalid email or password.");
-            }
-
+            var user = await _userRepository.GetByEmail(email) 
+                ?? throw new UnauthorizedAccessException("Invalid email or password.");
             var result = _passwordHasher.Verify(password, user.PasswordHash);
 
             if (result == false)

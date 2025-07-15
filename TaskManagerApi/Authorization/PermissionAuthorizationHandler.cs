@@ -26,7 +26,8 @@ namespace TaskManagerApi.Authorization
 
             if (userId is null || !Guid.TryParse(userId.Value, out var id))
             {
-                return; // rewrite with exception
+                context.Fail();
+                return;
             }
 
             using var scope = _serviceScopeFactory.CreateScope();

@@ -17,10 +17,21 @@ namespace TaskManagerApi.Extensions
             var jwtOptions = configuration.GetSection(nameof(JwtOptions)).Get<JwtOptions>();
 
             services
-                .AddAuthorization(x => 
+                .AddAuthorization(x =>
+                {
                     x.AddPolicy(nameof(PermissionEnum.Create),
                     builder => builder
-                        .Requirements.Add(new PermissionRequirements([PermissionEnum.Create]))))
+                        .Requirements.Add(new PermissionRequirements([PermissionEnum.Create])));
+                    x.AddPolicy(nameof(PermissionEnum.Read),
+                    builder => builder
+                        .Requirements.Add(new PermissionRequirements([PermissionEnum.Read])));
+                    x.AddPolicy(nameof(PermissionEnum.Update),
+                    builder => builder
+                        .Requirements.Add(new PermissionRequirements([PermissionEnum.Update])));
+                    x.AddPolicy(nameof(PermissionEnum.Delete),
+                    builder => builder
+                        .Requirements.Add(new PermissionRequirements([PermissionEnum.Delete])));
+                })
                 .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
                 {

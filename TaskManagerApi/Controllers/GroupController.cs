@@ -18,13 +18,15 @@ namespace TaskManagerApi.Controllers
             return Created();
         }
 
+        [Authorize(nameof(PermissionEnum.Read))]
         [HttpGet("groups")]
         public async Task<ActionResult> GetAll()
         {
             var result = await groupService.GetAllAsync();
             return Ok(result);
         }
-
+        
+        [Authorize(nameof(PermissionEnum.Read))]
         [HttpGet("{id:guid}")]
         public async Task<ActionResult> GetOne([FromRoute] Guid id)
         {
@@ -32,6 +34,7 @@ namespace TaskManagerApi.Controllers
             return Ok(result);
         }
 
+        [Authorize(nameof(PermissionEnum.Update))]
         [HttpPut("{id:guid}")]
         public async Task<ActionResult> Update([FromRoute] Guid id, [FromBody] UpdateGroupDto dto)
         {
@@ -39,6 +42,7 @@ namespace TaskManagerApi.Controllers
             return NoContent();
         }
 
+        [Authorize(nameof(PermissionEnum.Delete))]
         [HttpDelete("{id:guid}")]
         public async Task<ActionResult> Delete([FromRoute] Guid id)
         {
