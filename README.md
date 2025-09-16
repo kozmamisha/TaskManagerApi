@@ -36,7 +36,7 @@ Built with **Entity Framework Core**, **JWT Authentication**, and **N-Layer Arch
 
 ### ⚙️ Installation
 ```bash
-git clone https://github.com/yourname/TaskManagerApi.git
+git clone https://github.com/kozmamisha/TaskManagerApi.git
 cd TaskManagerApi
 dotnet build
 ```
